@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28917.181
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "RpgCombat", "RpgCombat", "{2972A1AB-C132-4935-93F1-8B9ECE599ACC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RpgCombat", "RpgCombat\RpgCombat\RpgCombat.csproj", "{C0F3D1CD-3AC8-469A-B404-FD21DC64AAB4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "RpgCombat\Tests\Tests.csproj", "{EEC387E3-0263-4A2A-B083-33B4446CECEE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C0F3D1CD-3AC8-469A-B404-FD21DC64AAB4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C0F3D1CD-3AC8-469A-B404-FD21DC64AAB4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C0F3D1CD-3AC8-469A-B404-FD21DC64AAB4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C0F3D1CD-3AC8-469A-B404-FD21DC64AAB4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EEC387E3-0263-4A2A-B083-33B4446CECEE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EEC387E3-0263-4A2A-B083-33B4446CECEE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EEC387E3-0263-4A2A-B083-33B4446CECEE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EEC387E3-0263-4A2A-B083-33B4446CECEE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{C0F3D1CD-3AC8-469A-B404-FD21DC64AAB4} = {2972A1AB-C132-4935-93F1-8B9ECE599ACC}
+		{EEC387E3-0263-4A2A-B083-33B4446CECEE} = {2972A1AB-C132-4935-93F1-8B9ECE599ACC}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {555B119A-615D-4375-B262-68F7D9EE78E4}
+	EndGlobalSection
+EndGlobal
