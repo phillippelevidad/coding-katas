@@ -27,12 +27,12 @@ namespace RpgCombat
 
         public IReadOnlyList<string> Factions => factions.ToList();
 
-        public Result CanDealDamageTo(Character other)
+        public Result CanDealDamageTo(Character target)
         {
-            if (other == this)
+            if (target == this)
                 return Result.Failure("Cannot deal damage to self.");
 
-            if (IsAlliesWith(other))
+            if (IsAlliesWith(target))
                 return Result.Failure("Cannot deal damage to an ally.");
 
             // TODO: check range, not clear how to represent character positions
@@ -40,23 +40,23 @@ namespace RpgCombat
             return Result.Ok();
         }
 
-        public void DealDamageTo(Character other, int damagePoints)
+        public void DealDamageTo(Character target, int damagePoints)
         {
-            CanDealDamageTo(other)
+            CanDealDamageTo(target)
                 .OnFailure(result => throw new InvalidOperationException(result.Error));
 
-            var modifier = GetDamageModifier(this, other);
+            var modifier = GetDamageModifier(this, target);
             var actualDamage = (int)Math.Round(damagePoints * modifier);
 
-            other.TakeDamage(actualDamage);
+            target.TakeDamage(actualDamage);
         }
 
-        public Result CanHeal(Character other)
+        public Result CanHeal(Character target)
         {
-            if (other != this && !IsAlliesWith(other))
+            if (target != this && !IsAlliesWith(target))
                 return Result.Failure("A character can only heal itself or an ally.");
 
-            if (!other.IsAlive)
+            if (!target.IsAlive)
                 return Result.Failure("Cannot heal a dead character.");
 
             return Result.Ok();
@@ -67,9 +67,9 @@ namespace RpgCombat
             return CanHeal(this);
         }
 
-        public void Heal(Character other, int healPoints)
+        public void Heal(Character target, int healPoints)
         {
-            CanHeal(other)
+            CanHeal(target)
                 .OnFailure(result => throw new InvalidOperationException(result.Error));
 
             Health = Health + healPoints > maxHealth
