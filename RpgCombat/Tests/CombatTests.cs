@@ -102,6 +102,44 @@ namespace Tests
         }
 
         [Fact]
+        public void MeleeFightersHaveARangeOf2Meters()
+        {
+            var character = new MeleeFighter();
+            character.AttackMaxRange.Should().Be(2);
+        }
+
+        [Fact]
+        public void RangedFightersHaveARangeOf20Meters()
+        {
+            var character = new RangedFighter();
+            character.AttackMaxRange.Should().Be(20);
+        }
+
+        [Fact]
+        public void CharactersMustBeInRangeToDealDamageToATarget()
+        {
+            var attacker = new RangedFighter();
+            var target = new MeleeFighter();
+
+            attacker.MoveStepsLeft(5);
+            target.MoveStepsRight(5);
+
+            attacker.IsInRangeToDealDamageTo(target).Should().BeTrue();
+        }
+
+        [Fact]
+        public void CannotDealDamageToCharacterOutOfRange()
+        {
+            var attacker = new RangedFighter();
+            var target = new MeleeFighter();
+
+            attacker.MoveStepsLeft(5);
+            target.MoveStepsRight(16);
+
+            attacker.IsInRangeToDealDamageTo(target).Should().BeFalse();
+        }
+
+        [Fact]
         public void NewCharactersBelongToNoFaction()
         {
             var character = new MeleeFighter();

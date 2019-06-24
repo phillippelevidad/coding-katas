@@ -24,6 +24,7 @@ namespace RpgCombat
         public int Health { get; private set; }
         public bool IsAlive { get; private set; }
         public int Level { get; private set; }
+        public int StepsFromCenter { get; private set; }
 
         public IReadOnlyList<string> Factions => factions.ToList();
 
@@ -35,7 +36,8 @@ namespace RpgCombat
             if (IsAlliesWith(target))
                 return Result.Failure("Cannot deal damage to an ally.");
 
-            // TODO: check range, not clear how to represent character positions
+            if (!IsInRangeToDealDamageTo(target))
+                return Result.Failure("Must be in range to deal damage.");
 
             return Result.Ok();
         }
@@ -75,6 +77,22 @@ namespace RpgCombat
             Health = Health + healPoints > maxHealth
                 ? maxHealth
                 : Health + healPoints;
+        }
+
+        public void MoveStepsLeft(int steps)
+        {
+            StepsFromCenter += steps;
+        }
+
+        public void MoveStepsRight(int steps)
+        {
+            StepsFromCenter -= steps;
+        }
+
+        public bool IsInRangeToDealDamageTo(Character target)
+        {
+            var distance = Math.Abs(StepsFromCenter) + Math.Abs(target.StepsFromCenter);
+            return AttackMaxRange >= distance;
         }
 
         public void HealSelf(int healPoints)
