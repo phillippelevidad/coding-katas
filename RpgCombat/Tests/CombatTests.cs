@@ -74,7 +74,6 @@ namespace Tests
 
             attacker.DealDamageTo(target, 1001);
 
-            target.Health.Should().Be(0);
             target.IsAlive.Should().BeFalse();
         }
 
@@ -87,6 +86,7 @@ namespace Tests
             attacker.DealDamageTo(target, 1001);
 
             target.CanHealSelf().Should().BeFailure();
+            attacker.CanHeal(target).Should().BeFailure();
         }
 
         [Fact]
@@ -157,6 +157,7 @@ namespace Tests
             player2.JoinFaction("a");
 
             player1.CanDealDamageTo(player2).Should().BeFailure();
+            player2.CanDealDamageTo(player1).Should().BeFailure();
         }
 
         [Fact]
@@ -168,7 +169,8 @@ namespace Tests
             player1.JoinFaction("a");
             player2.JoinFaction("a");
 
-            player1.CanHeal(player2);
+            player1.CanHeal(player2).Should().BeSuccessful();
+            player2.CanHeal(player1).Should().BeSuccessful();
         }
     }
 }
